@@ -1,0 +1,18 @@
+function gs(str,new_str,index){
+    if (new_str.length != 0){
+        console.log(new_str.join(""));
+    }
+    if (index == str.length){
+        return;
+    }
+    for (let i = index;i<str.length;i++){
+        new_str.push(str[i]);
+        gs(str,new_str,i+1);
+        new_str.pop();
+    }
+}
+
+var str = "abcd";
+var new_str = [];
+var index = 0;
+gs(str,new_str,index);
