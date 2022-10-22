@@ -1,0 +1,26 @@
+function longestPath(matrix,row,col,N,M,previous){
+    if (row < 0 || row  >= N || col < 0 || col >= M || matrix[row][col] <= previous){
+        return 0;
+    }
+    let count = 1;
+    let max = 0;
+    max = Math.max(max,longestPath(matrix,row-1,col,N,M,matrix[row][col])); // longest path up
+    max = Math.max(max,longestPath(matrix,row+1,col,N,M,matrix[row][col])); // longest path down
+    max = Math.max(max,longestPath(matrix,row,col-1,N,M,matrix[row][col])); // longest path left
+    max = Math.max(max,longestPath(matrix,row,col+1,N,M,matrix[row][col])); // longest path right
+    return max + count;
+}
+
+var matrix = [[9,9,4],[6,6,8],[2,1,1]];
+var N = 3;
+var M = 3;
+printBoard(matrix,N,M);
+
+function printBoard(matrix,N,M){
+    for (let i = 0;i<N;i++){
+        for (let j = 0;j<M;j++){
+            let ans = longestPath(matrix,i,j,N,M,-Infinity);
+            console.log("The longest path for " + i + " " + j + " is " + ans);
+        }
+    }
+}
